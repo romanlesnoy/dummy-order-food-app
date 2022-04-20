@@ -1,36 +1,40 @@
+import { useEffect, useState } from 'react';
+import useHttp from '../../hooks/use-http';
+
 import Card from '../UI/Card';
 import MealItem from './MealItem/MealItem';
 import classes from './MealsList.module.css';
 
-const DUMMY_MEALS = [
-    {
-        id: 'm1',
-        name: 'Sushi',
-        description: 'Finest fish and veggies',
-        price: 22.99,
-    },
-    {
-        id: 'm2',
-        name: 'Schnitzel',
-        description: 'A german specialty!',
-        price: 16.5,
-    },
-    {
-        id: 'm3',
-        name: 'Barbecue Burger',
-        description: 'American, raw, meaty',
-        price: 12.99,
-    },
-    {
-        id: 'm4',
-        name: 'Green Bowl',
-        description: 'Healthy...and green...',
-        price: 18.99,
-    },
-];
-
 const MealsList = () => {
-    const dishesList = DUMMY_MEALS.map((dish) => (
+    const [meals, setMeals] = useState([]);
+    console.log(meals);
+
+    const { isLoading, error, sendRequest: fetchMeals } = useHttp();
+
+    useEffect(() => {
+        const gotMeals = (mealsObj) => {
+            const loadedMeals = [];
+
+            for (const mealsKey in mealsObj) {
+                loadedMeals.push({
+                    id: mealsKey,
+                    name: mealsObj[mealsKey].name,
+                    description: mealsObj[mealsKey].description,
+                    price: mealsObj[mealsKey].price,
+                });
+            }
+            setMeals(loadedMeals);
+        };
+
+        fetchMeals(
+            {
+                url: 'https://react-http-request-cf425-default-rtdb.europe-west1.firebasedatabase.app/meals.json',
+            },
+            gotMeals
+        );
+    }, [fetchMeals]);
+
+    const dishesList = meals.map((dish) => (
         <MealItem
             id={dish.id}
             key={dish.id}
@@ -42,9 +46,7 @@ const MealsList = () => {
 
     return (
         <section className={classes.meals}>
-            <Card>
-                <ul>{dishesList}</ul>
-            </Card>
+            <Card><ul>{dishesList}</ul></Card>
         </section>
     );
 };
