@@ -7,7 +7,6 @@ import classes from './MealsList.module.css';
 
 const MealsList = () => {
     const [meals, setMeals] = useState([]);
-    console.log(meals);
 
     const { isLoading, error, sendRequest: fetchMeals } = useHttp();
 
@@ -34,19 +33,29 @@ const MealsList = () => {
         );
     }, [fetchMeals]);
 
-    const dishesList = meals.map((dish) => (
+    if (isLoading) {
+        return (
+            <section className={classes.MealsLoading}>
+                <p>Loading...</p>
+            </section>
+        );
+    }
+
+    const dishesList = meals.map((meal) => (
         <MealItem
-            id={dish.id}
-            key={dish.id}
-            name={dish.name}
-            description={dish.description}
-            price={dish.price}
+            id={meal.id}
+            key={meal.id}
+            name={meal.name}
+            description={meal.description}
+            price={meal.price}
         />
     ));
 
     return (
         <section className={classes.meals}>
-            <Card><ul>{dishesList}</ul></Card>
+            <Card>
+                <ul>{dishesList}</ul>
+            </Card>
         </section>
     );
 };
