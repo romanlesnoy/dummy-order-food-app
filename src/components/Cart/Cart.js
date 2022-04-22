@@ -9,6 +9,7 @@ import useHttp from '../../hooks/use-http';
 
 const Cart = (props) => {
     const [isCheckout, setIsCheckout] = useState(false);
+    const [didSubmit, setDidSubmit] = useState(false)
     const cartCtx = useContext(CartContext);
 
     const { isLoading, error, sendRequest: sendOrdersRequest } = useHttp();
@@ -37,6 +38,7 @@ const Cart = (props) => {
                 orderItems: cartCtx.items,
             }),
         });
+        setDidSubmit(true);
     };
 
     const cartItems = (
@@ -67,8 +69,8 @@ const Cart = (props) => {
         </div>
     );
 
-    return (
-        <Modal onClose={props.onClose}>
+    const cartModalContent = (
+        <>
             {cartItems}
             <div className={classes.total}>
                 <span>Total Amount</span>
@@ -81,6 +83,27 @@ const Cart = (props) => {
                 />
             )}
             {!isCheckout && modalActions}
+        </>
+    );
+
+    const isSubmitingOrderData = <p>Sending order data</p>;
+
+    const didSubmitModalContent = (
+        <>
+            <p>Successfully sent the order</p>
+            <div className={classes.actions}>
+            <button className={classes.button} onClick={props.onClose}>
+                Close
+            </button>
+        </div>
+        </>
+    );
+
+    return (
+        <Modal onClose={props.onClose}>
+            {!isLoading && !didSubmit && cartModalContent}
+            {isLoading && isSubmitingOrderData}
+            {!isLoading && didSubmit && didSubmitModalContent}
         </Modal>
     );
 };
