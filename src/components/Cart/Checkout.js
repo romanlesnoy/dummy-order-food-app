@@ -6,21 +6,27 @@ const Checkout = (props) => {
     };
 
     return (
-        <form onSubmit={confirmHandler}>
+        <form className={classes.form} onSubmit={confirmHandler}>
             <div className={classes.control}>
-                <label htmlFor='name'>You name</label>
-                <input type='text' id='name'/>
+                <label htmlFor="name">You name</label>
+                <input type="text" id="name" />
             </div>
             <div className={classes.control}>
-                <label htmlFor='adress'>Address</label>
-                <input type='text' id='Address'/>
+                <label htmlFor="adress">Address</label>
+                <input type="text" id="Address" />
             </div>
             <div className={classes.control}>
-                <label htmlFor='phone'>Phone</label>
-                <input type='text' id='phone'/>
+                <label htmlFor="phone">Phone</label>
+                <input type="text" id="phone" />
             </div>
-            <button type='button' onClick={props.onCancel}>Cancel</button>
-            <button type='submit'>Confirm</button>
+            <div className={classes.actions}>
+                <button type="button" onClick={props.onCancel}>
+                    Cancel
+                </button>
+                <button type="submit" className={classes.submit}>
+                    Confirm
+                </button>
+            </div>
         </form>
     );
 };
