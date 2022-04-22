@@ -9,7 +9,7 @@ import useHttp from '../../hooks/use-http';
 
 const Cart = (props) => {
     const [isCheckout, setIsCheckout] = useState(false);
-    const [didSubmit, setDidSubmit] = useState(false)
+    const [didSubmit, setDidSubmit] = useState(false);
     const cartCtx = useContext(CartContext);
 
     const { isLoading, error, sendRequest: sendOrdersRequest } = useHttp();
@@ -39,6 +39,7 @@ const Cart = (props) => {
             }),
         });
         setDidSubmit(true);
+        cartCtx.clearCart();
     };
 
     const cartItems = (
@@ -92,10 +93,10 @@ const Cart = (props) => {
         <>
             <p>Successfully sent the order</p>
             <div className={classes.actions}>
-            <button className={classes.button} onClick={props.onClose}>
-                Close
-            </button>
-        </div>
+                <button className={classes.button} onClick={props.onClose}>
+                    Close
+                </button>
+            </div>
         </>
     );
 
