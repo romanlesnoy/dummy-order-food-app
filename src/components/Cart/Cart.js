@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import Modal from '../UI/Modal';
 import CartItem from './CartItem';
@@ -71,7 +71,7 @@ const Cart = (props) => {
     );
 
     const cartModalContent = (
-        <>
+        <React.Fragment>
             {cartItems}
             <div className={classes.total}>
                 <span>Total Amount</span>
@@ -84,27 +84,39 @@ const Cart = (props) => {
                 />
             )}
             {!isCheckout && modalActions}
-        </>
+        </React.Fragment>
     );
 
     const isSubmitingOrderData = <p>Sending order data</p>;
 
     const didSubmitModalContent = (
-        <>
+        <React.Fragment>
             <p>Successfully sent the order</p>
             <div className={classes.actions}>
                 <button className={classes.button} onClick={props.onClose}>
                     Close
                 </button>
             </div>
-        </>
+        </React.Fragment>
+    );
+
+    const errorModalContent = (
+        <React.Fragment>
+            <p>{error}</p>
+            <div className={classes.actions}>
+                <button className={classes.button} onClick={props.onClose}>
+                    Close
+                </button>
+            </div>
+        </React.Fragment>
     );
 
     return (
         <Modal onClose={props.onClose}>
             {!isLoading && !didSubmit && cartModalContent}
             {isLoading && isSubmitingOrderData}
-            {!isLoading && didSubmit && didSubmitModalContent}
+            {!isLoading && didSubmit && !error && didSubmitModalContent}
+            {!isLoading && didSubmit && error && errorModalContent}
         </Modal>
     );
 };
