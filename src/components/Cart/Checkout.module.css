@@ -54,6 +54,15 @@
     background-color: #8f4494;
 }
 
+.submit:disabled,
+.submit:disabled:hover,
+.submit:disabled:active {
+  background-color: #ccc;
+  color: #292929;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
 .invalid label {
     color: #ca3e51;
 }
