@@ -1,5 +1,3 @@
-import { useRef, useState } from 'react';
-
 import classes from './Checkout.module.css';
 import useInput from '../../hooks/use-input';
 
@@ -8,12 +6,6 @@ const phoneRegex = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/;
 const isPhoneValid = (value) => value.match(phoneRegex);
 
 const Checkout = (props) => {
-    // const [formInputsValidity, setFormInputsValidity] = useState({
-    //     name: true,
-    //     address: true,
-    //     phone: true,
-    // });
-
     const {
         value: enteredName,
         isValid: enteredNameIsValid,
@@ -50,23 +42,6 @@ const Checkout = (props) => {
     const confirmHandler = (event) => {
         event.preventDefault();
 
-        // const enteredName = nameInputRef.current.value;
-        // const enteredAddress = addressInputRef.current.value;
-        // const enteredPhone = phoneInputRef.current.value;
-
-        // const enteredNameIsValid = !isEmpty(enteredName);
-        // const enteredAdressIsValid = !isEmpty(enteredAddress);
-        // const enteredPhoneIsValid = isPhoneValid(enteredPhone);
-
-        // setFormInputsValidity({
-        //     name: enteredNameIsValid,
-        //     address: enteredAdressIsValid,
-        //     phone: enteredPhoneIsValid,
-        // });
-
-        // const formIsValid =
-        //     enteredNameIsValid && enteredAdressIsValid && enteredPhoneIsValid;
-
         if (!formIsValid) {
             return;
         }
@@ -86,13 +61,11 @@ const Checkout = (props) => {
         nameInputHasError ? classes.invalid : ''
     }`;
     const addressControlClasses = `${classes.control} ${
-        addressInputHasError ? classes.invalid : '' 
+        addressInputHasError ? classes.invalid : ''
     }`;
     const phoneControlClasses = `${classes.control} ${
         phoneInputHasError ? classes.invalid : ''
     }`;
-
-    console.log(nameBlurHandler);
 
     return (
         <form className={classes.form} onSubmit={confirmHandler}>

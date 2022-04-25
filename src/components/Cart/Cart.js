@@ -29,15 +29,22 @@ const Cart = (props) => {
         setIsCheckout(true);
     };
 
+    const createOrder = (order) => {
+        console.log(order);
+    };
+
     const submitOrderHandler = async (userData) => {
-        sendOrdersRequest({
-            url: 'https://react-http-request-cf425-default-rtdb.europe-west1.firebasedatabase.app/orders.json',
-            method: 'POST',
-            body: JSON.stringify({
-                user: userData,
-                orderItems: cartCtx.items,
-            }),
-        });
+        sendOrdersRequest(
+            {
+                url: 'https://react-http-request-cf425-default-rtdb.europe-west1.firebasedatabase.app/orders.json',
+                method: 'POST',
+                body: JSON.stringify({
+                    user: userData,
+                    orderItems: cartCtx.items,
+                }),
+            },
+            createOrder
+        );
         setDidSubmit(true);
         cartCtx.clearCart();
     };
