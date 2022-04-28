@@ -1,19 +1,19 @@
 import { useReducer } from 'react';
 
 const initialInputState = {
-    value: "",
+    value: '',
     isTouched: false,
 };
 
 const inputsStateReducer = (state, action) => {
-    if (action.type === "INPUT") {
+    if (action.type === 'INPUT') {
         return { value: action.value, isTouched: state.isTouched };
     }
-    if (action.type === "BLUR") {
+    if (action.type === 'BLUR') {
         return { isTouched: true, value: state.value };
     }
-    if (action.type === "RESET") {
-        return { isTouched: false, value: "" };
+    if (action.type === 'RESET') {
+        return { isTouched: false, value: '' };
     }
     return initialInputState;
 };
