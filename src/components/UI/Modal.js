@@ -4,7 +4,14 @@ import ReactDOM from 'react-dom';
 import classes from './Modal.module.css';
 
 const Backdrop = (props) => {
-    return <div className={classes.backdrop} onClick={props.onClose}></div>;
+    return (
+        <div
+            role="presentation"
+            className={classes.backdrop}
+            onClick={props.onClose}
+            onKeyDown={props.onClose}
+        ></div>
+    );
 };
 
 const ModalOverlay = (props) => {
