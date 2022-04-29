@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import CartIcon from '../Cart/CartIcon';
 import CartContext from '../../store/cart-context';
@@ -42,6 +43,10 @@ const HeaderCartButton = (props) => {
             <span className={classes.badge}>{numberOfCartItems}</span>
         </button>
     );
+};
+
+HeaderCartButton.propTypes = {
+    onClick: PropTypes.func.isRequired,
 };
 
 export default HeaderCartButton;

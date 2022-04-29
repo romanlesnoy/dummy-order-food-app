@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import classes from './Checkout.module.css';
 import useInput from '../../hooks/use-input';
@@ -118,6 +119,11 @@ const Checkout = (props) => {
             </div>
         </form>
     );
+};
+
+Checkout.propTypes = {
+    onConfirm: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
 };
 
 export default Checkout;

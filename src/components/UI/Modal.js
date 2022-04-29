@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 import classes from './Modal.module.css';
 
@@ -37,6 +38,19 @@ const Modal = (props) => {
             )}
         </React.Fragment>
     );
+};
+
+Backdrop.propTypes = {
+    onClose: PropTypes.func.isRequired,
+};
+
+ModalOverlay.propTypes = {
+    children: PropTypes.element.isRequired,
+};
+
+Modal.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    children: PropTypes.element.isRequired,
 };
 
 export default Modal;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import classes from './CartItem.module.css';
 
@@ -20,6 +21,14 @@ const CartItem = (props) => {
             </div>
         </li>
     );
+};
+
+CartItem.propTypes = {
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    amount: PropTypes.number.isRequired,
+    onRemove: PropTypes.func.isRequired,
+    onAdd: PropTypes.func.isRequired,
 };
 
 export default CartItem;

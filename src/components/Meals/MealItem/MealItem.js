@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 
 import MealItemForm from './MealItemForm';
 import classes from './MealItem.module.css';
@@ -30,6 +31,13 @@ const MealItem = (props) => {
             </div>
         </li>
     );
+};
+
+MealItem.propTypes = {
+    description: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
 };
 
 export default MealItem;
