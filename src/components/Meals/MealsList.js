@@ -27,7 +27,7 @@ const MealsList = () => {
 
         fetchMeals(
             {
-                url: 'https://react-http-request-cf425-default-rtdb.europe-west1.firebasedatabase.app/meals.json',
+                url: 'https://react-custom-http-default-rtdb.europe-west1.firebasedatabase.app/meals.json',
             },
             gotMeals
         );
