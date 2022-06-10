@@ -2,7 +2,7 @@
 
 Демо простого приложения заказа еды
 
-[Ссылка на сайт](dummy-order-food-app.netlify.app)
+[Ссылка на сайт](https://dummy-order-food-app.netlify.app/)
 
 <img width="800" alt="Screenshot dummy order food app" src="https://user-images.githubusercontent.com/69040854/165381497-d1471e3d-3d30-4729-aa6d-1105b9a35753.png">
 
