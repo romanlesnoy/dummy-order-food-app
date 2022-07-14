@@ -37,7 +37,7 @@ const Cart = (props) => {
     const submitOrderHandler = async (userData) => {
         sendOrdersRequest(
             {
-                url: 'https://react-custom-http-default-rtdb.europe-west1.firebasedatabase.app/orders.json',
+                url: 'https://react-cart-database-default-rtdb.europe-west1.firebasedatabase.app/orders.json',
                 method: 'POST',
                 body: JSON.stringify({
                     user: userData,
