@@ -27,7 +27,7 @@ const MealsList = () => {
 
         fetchMeals(
             {
-                url: 'https://react-cart-database-default-rtdb.europe-west1.firebasedatabase.app/meals.json',
+                url: 'https://react-meals-db-496ac-default-rtdb.europe-west1.firebasedatabase.app/meals.json',
             },
             gotMeals
         );
